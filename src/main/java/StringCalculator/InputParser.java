@@ -1,6 +1,8 @@
 package StringCalculator;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -15,7 +17,6 @@ public class InputParser {
     public static final int NUMBERS_GROUP_INDEX = 2;
 
     private InputParser() {
-        throw new AssertionError("InputParser 클래스는 객체를 생성할 수 없습니다.");
     }
 
     private static List<String> parseStringToStringList(String input) {
