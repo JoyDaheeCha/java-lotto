@@ -8,8 +8,8 @@ public class InputView {
     }
 
     public static String getUserInput() {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.println("계산식을 입력하세요.");
-        return sc.nextLine();
+        return scanner.nextLine();
     }
 }
