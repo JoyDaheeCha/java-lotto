@@ -1,5 +1,6 @@
 package lotto.ticket;
 
+import lotto.number.LottoNumbers;
 import lotto.number.RandomNumbers;
 
 import java.util.ArrayList;
@@ -51,7 +52,7 @@ public class LottoTickets {
         RandomNumbers randomNumbers = new RandomNumbers();
 
         return IntStream.range(0, autoTicketCounts)
-                .mapToObj(i -> new LottoTicket(randomNumbers.lottoNumbers(), TicketType.AUTO))
+                .mapToObj(i -> new LottoTicket(randomNumbers.lottoNumbers(LottoNumbers.NUMBERS_LENGTH), TicketType.AUTO))
                 .collect(Collectors.toList());
     }
 
