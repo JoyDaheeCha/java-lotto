@@ -25,12 +25,12 @@ class GameResultTest {
     @ParameterizedTest(name = "{0}인 티켓: {1}장.")
     @MethodSource("provideTicketCountPerPrize")
     void createPlayResult(Prize prize, int ticketCounts) {
-        LottoGame lottoGame = lottoGame();
+        LottoGame lottoGame = dummyLottoGame();
         GameResult gameResult = new GameResult(lottoGame, new WinningNumbers(WINNING_NUMBERS), new BonusNumber(7));
         assertThat(gameResult.countTicketsWinning(prize)).isEqualTo(ticketCounts);
     }
 
-    private LottoGame lottoGame() {
+    private LottoGame dummyLottoGame() {
         List<LottoTicket> tickets = List.of(
                 new LottoTicket(1, 2, 3, 4, 5, 8),
                 new LottoTicket(1, 2, 3, 4, 5, 7),
@@ -41,7 +41,7 @@ class GameResultTest {
                 new LottoTicket(1, 12, 11, 10, 9, 8),
                 new LottoTicket(13, 12, 11, 10, 9, 8)
         );
-        return lottoGame(tickets);
+        return dummyLottoGame(tickets);
     }
 
     private static Stream<Arguments> provideTicketCountPerPrize() {
@@ -59,11 +59,11 @@ class GameResultTest {
     @ParameterizedTest(name = "로또 넘버{0}: 수익률은 {1}.")
     @MethodSource("provideTicketsWithProfitRate")
     void getExpectedProfitRateOfLottoGame(List<LottoTicket> tickets, double profitRate) {
-        GameResult gameResult = new GameResult(lottoGame(tickets), new WinningNumbers(WINNING_NUMBERS), new BonusNumber(7));
+        GameResult gameResult = new GameResult(dummyLottoGame(tickets), new WinningNumbers(WINNING_NUMBERS), new BonusNumber(7));
         assertThat(gameResult.profitRate().value()).isEqualTo(profitRate);
     }
 
-    private LottoGame lottoGame(List<LottoTicket> tickets) {
+    private LottoGame dummyLottoGame(List<LottoTicket> tickets) {
         return new LottoGame(LottoTicket.PRICE * tickets.size()) {
             @Override
             public List<LottoTicket> lottoTickets() {
